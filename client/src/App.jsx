@@ -61,7 +61,8 @@ const App = () => {
         }
       }
 
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/request';
+      const isProd = import.meta.env.PROD;
+      const API_URL = import.meta.env.VITE_API_URL || (isProd ? '/api/request' : 'http://localhost:5000/api/request');
 
       let normalizedUrl = url.trim();
       if (!/^https?:\/\//i.test(normalizedUrl)) {
