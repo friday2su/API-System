@@ -9,12 +9,5 @@
             "source": "/(.*)",
             "destination": "/client/dist/$1"
         }
-    ],
-    "redirects": [
-        {
-            "source": "/",
-            "destination": "/client/dist/index.html",
-            "permanent": false
-        }
     ]
 }
