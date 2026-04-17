@@ -33,20 +33,65 @@ https://github.com/user-attachments/assets/1b35e32f-41b9-4f12-898c-8523fd182532
 
 ## 🚀 Setup Instructions
 
-### 1. Backend Proxy
+### Prerequisites
+- Node.js 18+ installed
+
+### Option A: Full Setup (Recommended for CORS Proxy)
+
+Run both the backend proxy and frontend client together.
+
+**1. Install Dependencies**
+```bash
+# Install client dependencies
+cd client && npm install && cd ..
+
+# Install server dependencies
+cd server && npm install && cd ..
+```
+
+**2. Start Backend Proxy**
 ```bash
 cd server
-npm install
-npm start
+npm run dev   # Development mode with hot-reload (http://localhost:5000)
+# OR
+npm start     # Production mode
 ```
-*Runs on http://localhost:5000*
 
-### 3. Vercel Deployment (Monorepo)
+**3. Start Frontend (in a new terminal)**
+```bash
+cd client
+npm run dev   # Development server (http://localhost:5173)
+```
+
+### Option B: Frontend Only (No CORS Proxy)
+
+If you don't need the CORS bypass proxy, you can run just the frontend:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+### Option C: Vercel Deployment (Monorepo)
 - Framework Preset: **Vite** or **Other**
 - Root Directory: `./` (root)
 - Build Command: `npm run build`
 - Output Directory: `client/dist`
 - Environment Variable: Set `VITE_API_URL` to your full Vercel URL + `/api/request` (e.g., `https://your-app.vercel.app/api/request`)
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `VITE_API_URL` | Backend proxy URL for CORS bypass | `http://localhost:5000` (dev) |
+
+### Ports
+
+| Service | URL |
+|---------|-----|
+| Frontend (Vite) | http://localhost:5173 |
+| Backend (Express) | http://localhost:5000 |
 
 ---
 
