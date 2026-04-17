@@ -1,13 +1,22 @@
 {
     "version": 2,
-    "buildCommand": "cd client && npm run build",
-    "outputDirectory": "client/dist",
+    "buildCommand": "npm install && cd client && npm install && npm run build",
     "installCommand": "npm install",
-    "framework": "vite",
-    "rewrites": [
+    "framework": null,
+    "builds": [
         {
-            "source": "/api/request",
-            "destination": "/api/request.js"
+            "src": "api/**/*.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/request",
+            "dest": "/api/request.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/client/dist/$1"
         }
     ]
 }
